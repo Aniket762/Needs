@@ -1,13 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+
 import ViewImageScreen from './app/screens/viewImageScreen';
 import WelcomeScreen from './app/screens/welcomeScreen';
 import AllProductScreen from './app/screens/allProductScreen';
+import ListingDetailsScreen from './app/screens/ListingDetailsScreen';
+
 export default function App()
 {
   return (
-    <AllProductScreen />
+    <ViewImageScreen />
   );
 }
 
