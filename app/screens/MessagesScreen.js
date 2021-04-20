@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, SafeAreaView,StyleSheet} from 'react-native';
+import { FlatList, SafeAreaView,StyleSheet, View} from 'react-native';
 import Constants from 'expo-constants'
 
 import ListItem from '../components/ListItem';
@@ -53,7 +53,9 @@ function MessagesScreen(props) {
                 <ListItem
                     title={item.title}
                     subTitle={item.description}
-                    image = {item.image}
+                    image={item.image}
+                    onPress={() => console.log('Message Selected', item)}
+                    renderRightActions={()=><View style={{ backgroundColor:'red',width:70}}></View>}
                     />}
                 ItemSeparatorComponent={ListIteamSeparator}
         />
