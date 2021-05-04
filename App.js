@@ -8,11 +8,13 @@ import AllProductScreen from './app/screens/allProductScreen';
 import ListingDetailsScreen from './app/screens/ListingDetailsScreen';
 import MessagesScreen from './app/screens/MessagesScreen';
 import AccountScreen from './app/screens/AccountScreen';
+import InputScreen from './app/screens/InputScreen';
+import AppTextInput from './app/components/AppTextInput';
 
 export default function App()
 {
   return (
-    <AllProductScreen />
+    <AppTextInput placeholder="Username" icon={'email'}/>
   );
 }
 
