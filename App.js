@@ -7,11 +7,12 @@ import WelcomeScreen from './app/screens/welcomeScreen';
 import AllProductScreen from './app/screens/allProductScreen';
 import ListingDetailsScreen from './app/screens/ListingDetailsScreen';
 import MessagesScreen from './app/screens/MessagesScreen';
+import AccountScreen from './app/screens/AccountScreen';
 
 export default function App()
 {
   return (
-    <MessagesScreen />
+    <AccountScreen />
   );
 }
 

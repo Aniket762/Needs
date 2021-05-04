@@ -48,7 +48,7 @@ const initialMessages = [
 function MessagesScreen(props)
 {
     const [messages, setmessgaes] = useState(initialMessages);
-
+    const [refreshing,setRefreshing] =useState(false);
 
     const handleDelete = message =>
     {
@@ -72,6 +72,30 @@ function MessagesScreen(props)
                     <ListItemDeleteAction  onPress={()=>handleDelete(item)} />}
                     />}
                 ItemSeparatorComponent={ListItemSeparator}
+                refreshing={refreshing}
+                onRefresh={() =>
+                {
+                    setmessgaes([
+                        {
+                            id: 2,
+                            title: 'title2',
+                            description: 'descp2',
+                            image:require('../assets/aniket.jpeg')
+                        },
+                        {
+                            id: 3,
+                            title: 'title2',
+                            description: 'descp2',
+                            image:require('../assets/aniket.jpeg')
+                        },
+                        {
+                            id: 4,
+                            title: 'title2',
+                            description: 'descp2',
+                            image:require('../assets/aniket.jpeg')
+                        }
+                    ])
+                }}
         />
         </SafeAreaView>
         
@@ -81,7 +105,8 @@ function MessagesScreen(props)
 
 const styles = StyleSheet.create({
     screen: {
-        paddingTop: Constants.statusBarHeight
+        paddingTop: Constants.statusBarHeight,
+        flex:1,
     }
 })
 
