@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useState} from 'react';
 import { FlatList, SafeAreaView,StyleSheet, View} from 'react-native';
 import Constants from 'expo-constants'
 
@@ -7,7 +7,7 @@ import ListItemSeparator from '../components/ListIteamSeparator';
 import ListItemDeleteAction from '../components/ListItemDeleteAction';
 
 
-const messages = [
+const initialMessages = [
     {
         id: 1,
         title: 'title1',
@@ -45,7 +45,18 @@ const messages = [
         image:require('../assets/aniket.jpeg')
     }
  ]
-function MessagesScreen(props) {
+function MessagesScreen(props)
+{
+    const [messages, setmessgaes] = useState(initialMessages);
+
+
+    const handleDelete = message =>
+    {
+     // delete the message from messages screen
+     // call the server   
+       const newMessages =  messages.filter(m => m.id !== message.id);
+        setmessgaes(newMessages);
+    }
     return (
         <SafeAreaView style={styles.screen}> 
             <FlatList
@@ -57,7 +68,8 @@ function MessagesScreen(props) {
                     subTitle={item.description}
                     image={item.image}
                     onPress={() => console.log('Message Selected', item)}
-                    renderRightActions={ListItemDeleteAction}
+                    renderRightActions={() =>
+                    <ListItemDeleteAction  onPress={()=>handleDelete(item)} />}
                     />}
                 ItemSeparatorComponent={ListItemSeparator}
         />
