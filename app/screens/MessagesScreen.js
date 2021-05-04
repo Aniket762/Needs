@@ -1,113 +1,84 @@
-import React , {useState} from 'react';
-import { FlatList, SafeAreaView,StyleSheet, View} from 'react-native';
-import Constants from 'expo-constants'
+import React, { useState } from "react";
+import { FlatList, StyleSheet, View } from "react-native";
 
-import ListItem from '../components/ListItem';
-import ListItemSeparator from '../components/ListIteamSeparator';
-import ListItemDeleteAction from '../components/ListItemDeleteAction';
-
+import Screen from "../components/Screen";
+import {
+  ListItem,
+  ListItemDeleteAction,
+  ListItemSeparator,
+} from "../components/lists";
 
 const initialMessages = [
-    {
-        id: 1,
-        title: 'title1',
-        description: 'descp1',
-        image:require('../assets/aniket.jpeg')
-    },
-    {
-        id: 2,
-        title: 'title2',
-        description: 'descp2',
-        image:require('../assets/aniket.jpeg')
-    },
-    {
-        id: 3,
-        title: 'title2',
-        description: 'descp2',
-        image:require('../assets/aniket.jpeg')
-    },
-    {
-        id: 4,
-        title: 'title2',
-        description: 'descp2',
-        image:require('../assets/aniket.jpeg')
-    },
-    {
-        id: 5,
-        title: 'title2',
-        description: 'descp2',
-        image:require('../assets/aniket.jpeg')
-    },
-    {
-        id: 6,
-        title: 'title2',
-        description: 'descp2',
-        image:require('../assets/aniket.jpeg')
-    }
- ]
-function MessagesScreen(props)
-{
-    const [messages, setmessgaes] = useState(initialMessages);
-    const [refreshing,setRefreshing] =useState(false);
+  {
+    id: 1,
+    title: "Aniket 3d",
+    description: "Hi! are you selling the watch?",
+    image: require("../assets/aniket.png"),
+  },
+  {
+    id: 2,
+    title: "Aniket Pal",
+    description:
+      "Can we re-negotiate?I think you are charging more.",
+    image: require("../assets/aniket.jpeg"),
+  },
+  {
+    id: 3,
+    title: "Aniket 3d",
+    description: "Hi! I really like the monster shoes",
+    image: require("../assets/aniket.png"),
+  },
+];
 
-    const handleDelete = message =>
-    {
-     // delete the message from messages screen
-     // call the server   
-       const newMessages =  messages.filter(m => m.id !== message.id);
-        setmessgaes(newMessages);
-    }
-    return (
-        <SafeAreaView style={styles.screen}> 
-            <FlatList
-            data={messages}
-            keyExtractor={message => message.id.toString()}
-            renderItem={({ item }) =>
-                <ListItem
-                    title={item.title}
-                    subTitle={item.description}
-                    image={item.image}
-                    onPress={() => console.log('Message Selected', item)}
-                    renderRightActions={() =>
-                    <ListItemDeleteAction  onPress={()=>handleDelete(item)} />}
-                    />}
-                ItemSeparatorComponent={ListItemSeparator}
-                refreshing={refreshing}
-                onRefresh={() =>
-                {
-                    setmessgaes([
-                        {
-                            id: 2,
-                            title: 'title2',
-                            description: 'descp2',
-                            image:require('../assets/aniket.jpeg')
-                        },
-                        {
-                            id: 3,
-                            title: 'title2',
-                            description: 'descp2',
-                            image:require('../assets/aniket.jpeg')
-                        },
-                        {
-                            id: 4,
-                            title: 'title2',
-                            description: 'descp2',
-                            image:require('../assets/aniket.jpeg')
-                        }
-                    ])
-                }}
-        />
-        </SafeAreaView>
-        
-    );
+function MessagesScreen(props) {
+  const [messages, setMessages] = useState(initialMessages);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const handleDelete = (message) => {
+    // Delete the message from messages
+    setMessages(messages.filter((m) => m.id !== message.id));
+  };
+
+  return (
+    <Screen>
+      <FlatList
+        data={messages}
+        keyExtractor={(message) => message.id.toString()}
+        renderItem={({ item }) => (
+          <ListItem
+            title={item.title}
+            subTitle={item.description}
+            image={item.image}
+            onPress={() => console.log("Message selected", item)}
+            renderRightActions={() => (
+              <ListItemDeleteAction onPress={() => handleDelete(item)} />
+            )}
+          />
+        )}
+        ItemSeparatorComponent={ListItemSeparator}
+        refreshing={refreshing}
+        onRefresh={() => {
+          setMessages([
+            {
+              id: 2,
+              title: "Aniket Pal",
+              description:
+                "Can we re-negotiate?I think you are charging more.",
+              image: require("../assets/aniket.jpeg"),
+            },
+            {
+              id: 3,
+              title: "Aniket",
+              description: "Hi! I really like the monster shoes",
+              image: require("../assets/aniket.png"),
+            },
+          ]);
+        }}
+      />
+    </Screen>
+  );
 }
 
-
-const styles = StyleSheet.create({
-    screen: {
-        paddingTop: Constants.statusBarHeight,
-        flex:1,
-    }
-})
+const styles = StyleSheet.create({});
 
 export default MessagesScreen;
