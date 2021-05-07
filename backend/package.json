@@ -1,7 +1,6 @@
 {
-	"name": "backend",
+	"name": "needs-backend",
 	"main": "index.js",
-	"author":"Aniket Pal",
 	"scripts": {
 		"dev": "nodemon index.js",
 		"start": "node index.js"

@@ -7,6 +7,8 @@ const sendPushNotification = async (targetExpoPushToken, message) => {
 	]);
 
 	const sendChunks = async () => {
+		// This code runs synchronously. We're waiting for each chunk to be send.
+		// A better approach is to use Promise.all() and send multiple chunks in parallel.
 		chunks.forEach(async (chunk) => {
 			console.log("Sending Chunk", chunk);
 			try {
